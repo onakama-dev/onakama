@@ -1,0 +1,811 @@
+.top-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #444;
+  line-height: 1.8;
+}
+
+/* ヒーロー */
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  overflow: hidden;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 背景画像 */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("/hero.png");
+  background-size: cover;
+  background-position: right center;
+  filter: brightness(0.95) saturate(0.95);
+  z-index: 0;
+}
+
+/* ===== Hero Logo ===== */
+/* .hero-logo {
+  position: absolute;
+  top: 40px;
+  left: 8%;
+  z-index: 3;
+} */
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5px;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-logo img {
+  height: 44px;
+  width: auto;
+}
+
+/* ログインリンク */
+
+.login-link {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+
+  padding: 6px 16px;
+  border-radius: 9999px; /* 完全ピルだが高さを抑える */
+
+  border: 1.5px solid rgba(5, 150, 105, 0.6);
+  color: #047857;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
+
+  transition: all 0.25s ease;
+}
+
+.login-link:hover {
+  background: #059669;
+  color: #ffffff;
+  border-color: #059669;
+}
+
+/* オーバーレイ */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      rgba(236, 253, 245, 0.95) 20%,   /* 薄いグリーン */
+      rgba(255, 255, 255, 0.85) 45%,
+      rgba(255, 255, 255, 0.4) 70%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
+
+.hero-illustration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  opacity: 0.6;
+}
+
+.hero-illustration svg {
+  width: 100%;
+  height: auto;
+}
+
+/* テキスト */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+body {
+  font-family: var(--font-sans);
+  letter-spacing: 0.03em;
+}
+
+.hero-title {
+  font-family: "Yu Mincho", "Noto Serif JP", serif;
+  font-size: 3.4rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  color: #1f2937;
+}
+
+.highlight {
+  color: #059669;
+  white-space: nowrap;
+}
+
+.hero-lead {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  color: #444;
+  line-height: 1.8;
+}
+
+.emphasis {
+  color: #059669; /* 少しだけ深いグリーン */
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  color: #666;
+}
+
+.hero-text {
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.hero-title,
+.hero-sub,
+.hero-text,
+.cta-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* PCでは改行あり */
+.pc-break {
+  display: block;
+}
+
+/* 2行目を少し下げる（1文字分くらい） */
+.line2 {
+  display: inline-block;
+  margin-left: 0.8em;
+}
+
+/* 波 */
+.wave {
+  line-height: 0;
+  color: #ffffff; /* 白セクションに繋げる */
+}
+
+.wave.flip {
+  transform: rotate(180deg);
+}
+
+.wave svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+
+/* セクション共通 */
+.section {
+  padding: 90px 24px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin-bottom: 28px;
+}
+
+.section h2 {
+  max-width: 800px;
+  margin: 0 auto 30px;
+  font-size: 1.6rem;
+}
+
+.section p,
+.section ul,
+.section ol {
+  max-width: 800px;
+  margin: 0 auto 15px;
+}
+
+.section ul,
+.section ol {
+  padding-left: 20px;
+}
+
+.section li {
+  margin-bottom: 10px;
+}
+
+/* ===== Experience Card ===== */
+
+.experience-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #ffffff, #f8fffb);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle background glow */
+
+.experience-card::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16,185,129,0.08), transparent 70%);
+  top: -200px;
+  right: -150px;
+  z-index: 0;
+}
+
+
+/* ===== Experience Section ===== */
+
+.experience-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.experience-text {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.experience-art {
+  position: relative;
+  flex: 0 0 40%;
+  height: 320px;
+  z-index: 1;
+}
+
+.experience-illustration {
+  flex: 0 0 40%;
+  opacity: 0.85;
+}
+
+.experience-illustration svg {
+  width: 100%;
+  height: auto;
+}
+
+.experience-list {
+  list-style: none;
+  padding: 0;
+}
+
+.experience-list li {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #374151;
+  padding-left: 20px;
+  position: relative;
+}
+
+.experience-list li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 12px;
+}
+
+
+
+/* 有機的ブロブ */
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  animation: float 10s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle at 30% 30%, #bbf7d0, #34d399);
+  top: 40px;
+  left: 40px;
+}
+
+.blob-2 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 70% 70%, #d1fae5, #10b981);
+  bottom: 20px;
+  right: 30px;
+}
+
+.blob-3 {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 50% 50%, #ecfdf5, #6ee7b7);
+  top: 120px;
+  right: 80px;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+
+
+/* 背景切り替え */
+.bg-white {
+  background: #ffffff;
+}
+
+.bg-soft {
+  background: linear-gradient(180deg, #f3faf7 0%, #ecfdf5 100%);
+}
+
+.small {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* CTA */
+.cta-button {
+  background: #34d399;
+  color: white;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background: #10b981;
+}
+
+.cta-section {
+  background: #ecfdf5;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+/* ===== About Card ===== */
+
+.about-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #ffffff, #f3faf7);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 逆配置 */
+.about-card.reverse {
+  flex-direction: row;
+}
+
+.about-art {
+  position: relative;
+  flex: 0 0 40%;
+  height: 320px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-sub{
+  font-size: 18px;
+}
+
+/* ===== About専用ブロブ（少し色味変える） */
+
+.blob-4 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle at 30% 30%, #d1fae5, #34d399);
+  top: 30px;
+  left: 60px;
+}
+
+.blob-5 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 70% 70%, #bbf7d0, #10b981);
+  bottom: 20px;
+  right: 40px;
+}
+
+.blob-6 {
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle at 50% 50%, #ecfdf5, #6ee7b7);
+  top: 120px;
+  right: 100px;
+}
+
+.about-illustration {
+  flex: 0 0 45%;
+}
+
+.about-illustration img {
+  width: 100%;
+  height: auto;
+}
+
+
+.reason-section {
+  padding: 90px 24px;
+  background: #ffffff;
+}
+
+.reason-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, #ffffff, #f8fffb);
+  box-shadow: 0 20px 60px rgba(16, 185, 129, 0.08);
+}
+
+.reason-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  letter-spacing: 0.05em;
+}
+
+.reason-cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.reason-card {
+  flex: 1;
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.06);
+  transition: transform 0.3s ease;
+}
+
+.reason-card:hover {
+  transform: translateY(-6px);
+}
+
+.reason-card img {
+  width: 160px;
+  margin-bottom: 30px;
+}
+
+.reason-card h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.reason-card p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+}
+
+.reason-image {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(145deg, #f3fbf7, #e6f5ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.08);
+}
+
+.reason-image img {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+}
+
+.reason-lead {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+}
+
+.how-section {
+  padding: 90px 24px;
+  background: linear-gradient(180deg, #f8fffb 0%, #ffffff 100%);
+}
+
+.how-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.how-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.how-lead {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 50px;
+  line-height: 1.9;
+}
+
+.how-steps {
+  display: flex;
+  gap: 28px;
+}
+
+.how-step {
+  position: relative;
+  flex: 1;
+  padding: 50px 28px 40px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 20px 50px rgba(16, 185, 129, 0.08);
+  overflow: hidden;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.how-step:hover {
+  transform: translateY(-6px);
+}
+
+/* 超大きい背景番号 */
+.step-bg {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 140px;
+  font-weight: 700;
+  color: rgba(16, 185, 129, 0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.how-step h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+}
+
+.how-step p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+}
+
+/* レスポンシブ */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .experience-card {
+    padding: 60px;
+  }
+
+    .reason-container {
+    padding: 60px 40px;
+  }
+
+  .reason-cards {
+    gap: 24px;
+  }
+
+  .reason-card {
+    padding: 32px 24px;
+  }
+
+  .reason-card img {
+    width: 130px;
+  }
+
+  .how-steps {
+    gap: 24px;
+  }
+
+  .step-bg {
+    font-size: 100px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 100px 20px;
+  }
+
+  .hero-illustration {
+    width: 450px;
+  }
+
+  .hero-logo {
+    left: 20px;
+    top: 24px;
+  }
+
+   .hero-header {
+    padding-top: 24px;
+  }
+
+  .hero-logo img {
+    height: 28px;
+  }
+
+  .login-link {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+
+
+  .pc-break {
+    display: none;
+  }
+
+  .line2 {
+    margin-left: 0;
+  }
+
+  .hero-bg {
+    background-position: center;
+  }
+
+  .hero-bg::after {
+    background: rgba(236, 253, 245, 0.9);
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    line-height: 1.5;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 60px 20px;
+  }
+
+  .experience-container {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .experience-illustration {
+    width: 70%;
+    margin-top: 40px;
+  }
+
+  .experience-card {
+    flex-direction: column;
+    padding: 40px 24px;
+  }
+
+  .experience-art {
+    width: 100%;
+    margin-top: 40px;
+    height: 260px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .about-card {
+    flex-direction: column;
+    padding: 40px 24px;
+  }
+
+  .about-art {
+    width: 100%;
+    height: 260px;
+    margin-bottom: 40px;
+  }
+  .about-illustration {
+    width: 80%;
+    margin-bottom: 40px;
+  }
+
+    .reason-container {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
+
+  .reason-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .reason-cards {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .reason-card {
+    padding: 32px 20px;
+  }
+
+  .reason-card img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+
+  .reason-card h3 {
+    font-size: 16px;
+  }
+
+  .reason-card p {
+    font-size: 13px;
+  }
+
+  .how-steps {
+    flex-direction: column;
+  }
+
+  .how-lead {
+    margin-bottom: 50px;
+  }
+
+  .step-bg {
+    font-size: 90px;
+    top: 5px;
+    right: 15px;
+  }
+}

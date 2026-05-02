@@ -1,0 +1,271 @@
+■実装機能
+
+●カードクリック → プロフィール詳細
+
+●非ログイン → 詳細は見せない(非ログインの場合は、カードを押下しても、詳細は見せない)
+
+●自分以外のみ表示（自分のプロフィール非表示）
+
+●詳細ページに気になる（いいねと同様の意味）機能（Supabase設計込み）
+
+●相互気になるの（マッチ）判定
+
+●DM / メッセージ機能の土台
+
+●messages テーブル & RLS 実装
+
+●マッチ成立時に matches を作る処理
+
+●チャット画面 UI
+
+●メッセージのリアルタイム化（Supabase Realtime）
+
+●マッチ一覧のページ作成
+
+●未読バッジ
+
+●既読・未読
+
+●通知（Push / Email）
+
+・トップ画面
+　フェードインアニメーション
+
+　●セクション間の背景色切り替え
+
+　ヒーローに淡いイラスト追加
+
+フォント選定（ブランド化）
+
+CTAの心理設計
+
+スマホ時のヒーロー最適化
+
+セクション全体をさらに今っぽくする
+
+　●セクションにゆるい波SVGを入れる（今っぽさUP）
+
+　スクロール時フェードイン
+
+　「安心して使える理由」をカードデザイン化
+
+
+
+
+・送信相手を動的にする
+
+・既読(read_at)が null のときだけ通知
+・5分以内に連続通知しない制御
+・アプリURLをメールに含める
+・本番用ドメインをResendで認証
+
+本番用ドメインで運用
+
+●ユーザーを選択した時の画面の自己紹介、趣味の表示がおかしい
+
+・登録時のメールが怪しい
+
+●プロフィール一覧の趣味が表示されない
+
+●マッチ一覧ページ /matches
+
+
+●マッチ一覧ページで、相手プロフィール表示（名前・年齢）
+
+●チャット画面で、相手の名前を表示
+
+・通知設計（既読OFF × 通知ON）
+	
+・「相手が今開いてるときは即既読（presence）」
+
+・ マッチ解除
+
+・ 通報・ブロック
+
+・ 「IBS配慮メッセージ」テンプレ
+
+・一覧で「気になる」済み表示
+
+・取り消し（unlike）
+
+・トップページを残す構成にしたい
+
+・ログイン中は「いいね」ボタン表示
+
+・年代を必須入力にする
+
+・検索（都道府県・年代・性別）を追加
+
+・マッチング機能
+
+・UIを「マッチングサービス感」に寄せる
+
+・安心設計（非公開・ブロック・通報）
+
+・片想い一覧（自分が❤️した人）
+
+----
+https://onakama.vercel.app/
+
+-----------
+Step① Supabase CLI インストール（まだなら）
+
+ターミナルで：
+
+npm install -g supabase
+
+
+確認：
+
+supabase --version
+
+Step② プロジェクトと接続
+
+SupabaseのWeb画面で：
+
+Settings
+→ General
+→ Project ID をコピー
+
+ターミナルで：
+
+supabase login
+
+
+ブラウザが開く → 認証
+
+次に：
+
+supabase link --project-ref あなたのProjectID
+
+Step③ Edge Function 作成
+supabase functions create send-email
+
+
+すると
+
+supabase/functions/send-email/index.ts
+
+
+が作られます。
+
+Step④ コードを編集
+
+index.ts を開いて、全部これに置き換え：
+
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { Resend } from "npm:resend"
+
+const resend = new Resend(Deno.env.get("RESEND_API_KEY"))
+
+serve(async (req) => {
+  const { to, subject, html } = await req.json()
+
+  const data = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to,
+    subject,
+    html,
+  })
+
+  return new Response(JSON.stringify(data), {
+    headers: { "Content-Type": "application/json" },
+  })
+})
+
+Step⑤ APIキーをSupabaseに登録
+
+これ超重要です。
+
+ターミナルで：
+
+supabase secrets set RESEND_API_KEY=ここにAPIキー
+
+
+例：
+
+supabase secrets set RESEND_API_KEY=re_xxxxxxxxxxxxx
+
+Step⑥ デプロイ
+supabase functions deploy send-email
+
+
+成功するとURLが表示されます。
+
+Step⑦ 呼び出し側（チャット投稿時）
+
+チャット送信成功後に：
+
+await fetch(
+  "https://あなたのprojectid.supabase.co/functions/v1/send-email",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      to: "通知先メールアドレス",
+      subject: "新しいチャットが届きました",
+      html: "<p>新しいメッセージがあります</p>",
+    }),
+  }
+)
+
+🎯 補足（本番で重要）
+通知先メールはどう決める？
+
+チャット相手のemailを：
+
+auth.users
+
+
+から取得できます。
+
+🚀 もっと良い設計（おすすめ）
+
+実はもっとプロっぽい方法があります。
+
+✔ チャットinsertをトリガー
+✔ Supabase Database Trigger
+✔ 自動でEdge Function呼び出し
+
+これならフロント側に通知ロジック不要。
+
+もしよければ次は：
+
+「トリガー方式でやりたい」
+
+と言ってください。
+本格設計でいきます。
+
+-----------------------
+
+
+🚀 STEP④ デプロイ
+npx supabase functions deploy send-email
+
+
+成功すると：
+
+Deployed Functions on project ydogcueclarzaojzeolq: send-email
+
+
+と出ます。
+
+🔗 STEP⑤ URL確認
+npx supabase functions list
+
+
+表示されるURLをメモしてください。
+
+例：
+
+https://ydogcueclarzaojzeolq.supabase.co/functions/v1/send-email
+
+🎯 次
+
+次は
+
+チャット送信時にこのEdge Functionを呼ぶコード
+
+を実装します。

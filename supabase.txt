@@ -1,0 +1,20 @@
+supabase
+
+データベースパスワード
+Onakaatsuki0808
+
+
+API
+Project URL
+⇒https://ydogcueclarzaojzeolq.supabase.co
+
+
+
+Publishable key
+⇒sb_publishable_jlHHRIskxT90R3r_dSQ-PA_aUeprmrL
+
+
+テストでのユーザー登録
+psjhp0808@gmail.com
+198888
+

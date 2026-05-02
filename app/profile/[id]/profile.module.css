@@ -1,0 +1,31 @@
+.hobbyList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hobbyTag {
+  background: #eef2ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  border: none;
+  background: #eee;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}

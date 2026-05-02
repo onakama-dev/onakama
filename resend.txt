@@ -1,0 +1,26 @@
+psjhp0808@gmail.com
+
+atsuki0808onakama
+
+APIキー
+re_594Aysfg_2FaejyCDspuwK7F4mH5rJVK3
+
+
+Supabaseダッシュボードへ：
+Edge Functions → send-email → Details
+https://ydogcueclarzaojzeolq.supabase.co/functions/v1/send-email
+
+
+
+
+$anon = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlkb2djdWVjbGFyemFvanplb2xxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkyMzM0NTIsImV4cCI6MjA4NDgwOTQ1Mn0.s6vAUQYtvwFap2ictvdT6FAzLrNvWm5Se-i04cAmosY"
+
+Invoke-WebRequest `
+  -Uri "https://ydogcueclarzaojzeolq.supabase.co/functions/v1/send-email" `
+  -Method POST `
+  -Headers @{
+    "Content-Type"="application/json"
+    "apikey"=$anon
+    "Authorization"="Bearer $anon"
+  } `
+  -Body '{"to":"psjhp0808@gmail.com"}'

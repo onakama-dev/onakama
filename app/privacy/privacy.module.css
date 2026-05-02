@@ -1,0 +1,43 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  line-height: 1.7;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  border-left: 4px solid #4caf50;
+  padding-left: 8px;
+}
+
+.subTitle {
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+.text {
+  margin-bottom: 12px;
+}
+
+.list {
+  padding-left: 20px;
+  margin-bottom: 12px;
+}
+
+.listItem {
+  margin-bottom: 4px;
+}
+
+.link {
+  color: #00a96e;
+  text-decoration: underline;
+}
