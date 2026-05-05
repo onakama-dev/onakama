@@ -1,26 +1,32 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY! // サーバー専用
-)
-
 export async function POST(req: Request) {
-  const { userId } = await req.json()
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
 
-  if (!userId) {
-    return NextResponse.json({ error: 'User ID required' }, { status: 400 })
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // profiles削除
+  const supabaseAdmin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
+  // 自分だけ削除
   await supabaseAdmin
     .from('profiles')
     .delete()
-    .eq('id', userId)
+    .eq('id', user.id)
 
-  // auth削除
-  const { error } = await supabaseAdmin.auth.admin.deleteUser(userId)
+  const { error } = await supabaseAdmin.auth.admin.deleteUser(user.id)
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })
