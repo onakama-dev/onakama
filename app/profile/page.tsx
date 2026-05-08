@@ -286,12 +286,38 @@ export default function ProfilePage() {
           <option value="no_answer">回答しない</option>
         </select>
 
-        <input
-          type="date"
-          style={inputStyle}
-          value={birthDate}
-          onChange={e => setBirthDate(e.target.value)}
-        />
+        <div style={{ marginBottom: 14 }}>
+          <label
+            style={{
+              display: 'block',
+              fontSize: 13,
+              color: '#6b7280',
+              marginBottom: 8,
+              paddingLeft: 4
+            }}
+          >
+            生年月日（20歳以上）
+          </label>
+
+          <input
+            type="date"
+            style={inputStyle}
+            value={birthDate}
+            onChange={e => setBirthDate(e.target.value)}
+          />
+
+          <p
+            style={{
+              fontSize: 12,
+              color: '#9ca3af',
+              marginTop: -4,
+              paddingLeft: 4,
+              lineHeight: 1.6
+            }}
+          >
+            年齢確認のために使用します
+          </p>
+        </div>
 
         {ageError && (
           <p style={{ color: '#dc2626', fontSize: 13 }}>{ageError}</p>
