@@ -92,7 +92,7 @@ export default function TopPage() {
 
       <Wave flip />
 
-      <section className="section bg-soft">
+      <section className="section about-section">
         <div className="about-card reverse">
 
           <div className="about-illustration">
@@ -102,8 +102,7 @@ export default function TopPage() {
           <div className="about-text">
             <h2 className="section-title">Onakamaについて</h2>
             <p className="about-sub">
-              Onakamaは、過敏性腸症候群の当事者同士が
-              体調を前提にしてつながれる場所です。
+              Onakamaは、過敏性腸症候群の当事者同士が体調を前提にしてつながれる場所です。
             </p>
             <ul className="experience-list">
               <li>途中で抜けても大丈夫</li>
@@ -123,7 +122,7 @@ export default function TopPage() {
           <h2 className="reason-title">安心して使える理由</h2>
 
           <p className="reason-lead">
-            同じ悩みを持つ人と出会える場所だからこそ、<br />
+            同じ悩みを持つ人と出会える場所だからこそ、<br className="pc-break" />
             心の距離が近づくまでは匿名でいられる安心を。
           </p>
           
