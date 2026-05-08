@@ -907,5 +907,33 @@ body {
     line-height: 1.8;
   }
 
+    /* =========================
+     スマホ本文サイズ統一
+  ========================= */
+
+  .hero-lead,
+  .hero-sub,
+  .about-sub,
+  .reason-lead,
+  .experience-list li,
+  .about-text .experience-list li,
+  .reason-card h3,
+  .how-lead,
+  .how-step p,
+  .reason-card p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  .hero-sub,
+  .reason-card p,
+  .how-step p {
+    color: #666;
+  }
   
+  .reason-card h3,
+  .how-step h3 {
+    font-size: 16px;
+    font-weight: 600;
+  }
 }
