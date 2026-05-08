@@ -668,6 +668,18 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(236, 253, 245, 0.72) 0%,
+      rgba(255, 255, 255, 0.52) 55%,
+      rgba(255, 255, 255, 0.28) 100%
+    );
+  }
+
   .hero {
     height: auto;
     padding: 8px 20px 48px;
@@ -704,6 +716,12 @@ body {
     text-align: center;
     font-size: 2.2rem;
     line-height: 1.7;
+  }
+
+  .hero-bg {
+    background-position: center center;
+    background-size: cover;
+    transform: scale(1.06);
   }
 
   .cta-button {
