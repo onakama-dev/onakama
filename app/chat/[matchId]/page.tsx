@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
 type Message = {
   id: string
@@ -26,6 +26,8 @@ export default function ChatPage() {
   const [userId, setUserId] = useState<string | null>(null)
 
   const [partner, setPartner] = useState<Profile | null>(null)
+
+  const router = useRouter()
 
   useEffect(() => {
     console.log("🆔 matchId:", matchId)
@@ -219,16 +221,69 @@ export default function ChatPage() {
 
   return (
     <main style={{ padding: 16 }}>
-      <h2>チャット</h2>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12,
+          marginBottom: 20,
+        }}
+      >
+        <button
+          onClick={() => router.back()}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            border: 'none',
+            background: '#f3f4f6',
+            cursor: 'pointer',
+            fontSize: 18,
+            flexShrink: 0,
+          }}
+        >
+          ←
+        </button>
 
-      <header style={{ padding: 12, borderBottom: '1px solid #ddd' }}>
-        <h3 style={{ margin: 0 }}>
+        <h2 style={{ margin: 0 }}>
           {partner?.nickname ?? 'チャット'}
-        </h3>
-      </header>
+        </h2>
+      </div>
+
+      <div
+        style={{
+          background: '#f0fdf4',
+          border: '1px solid #d1fae5',
+          borderRadius: 16,
+          padding: '14px 16px',
+          marginTop: 16,
+          marginBottom: 20,
+        }}
+      >
+        <p
+          style={{
+            fontSize: 13,
+            color: '#065f46',
+            lineHeight: 1.9,
+            margin: 0,
+          }}
+        >
+          ここには、体調や不安を抱えながら過ごしている人もいます。<br />
+          返信のペースや言葉の温度感を、お互いに大切にできる場所でありますように。
+        </p>
+      </div>
 
 
-      <div style={{ minHeight: 300 }}>
+      <div 
+        style={{ 
+          minHeight: 300,
+          background: '#ffffff',
+          borderRadius: 20,
+          padding: 16,
+          marginBottom: 16,
+          boxShadow: '0 4px 12px rgba(0,0,0,0.04)', 
+        }}
+      >
         {messages.map((m) => {
           const isMine = m.sender_id === userId
           const isLastMyMessage = m.id === lastMyMessageId
@@ -270,9 +325,32 @@ export default function ChatPage() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={3}
-          style={{ flex: 1 }}
+          style={{ 
+            flex: 1,
+            borderRadius: 16,
+            border: '1px solid #e5e7eb',
+            padding: 12,
+            resize: 'none',
+            fontSize: 14,
+          }}
         />
-        <button onClick={sendMessage}>送信</button>
+        <button 
+          onClick={sendMessage}
+          style={{
+            border: 'none',
+            borderRadius: 999,
+            width: 64,
+            height: 64,
+            background: '#10b981',
+            color: '#fff',
+            fontWeight: 600,
+            fontSize: 15,
+            cursor: 'pointer',
+            flexShrink: 0,
+          }}
+        >
+          送信
+        </button>
       </div>
     </main>
   )

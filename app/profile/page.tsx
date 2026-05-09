@@ -315,7 +315,7 @@ export default function ProfilePage() {
               lineHeight: 1.6
             }}
           >
-            年齢確認のために使用します
+            年齢確認のために使用します。生年月日は公開されません。
           </p>
         </div>
 
