@@ -45,6 +45,42 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Onakama",
-  description: "Onakama IBSの同じ悩みを抱える方々の出会いの場",
+  title: "Onakama | IBS当事者同士がつながれる場所",
+  description: "外出や人付き合いに不安を感じるあなたへ。無理せず、匿名でつながれる場所。",
+
+   metadataBase: new URL("https://onakama.vercel.app/"),
+
+  openGraph: {
+    title: "Onakama | IBS当事者同士がつながれる場所",
+
+    description:
+      "外出や人付き合いに不安を感じるあなたへ。無理せず、匿名でつながれる場所。",
+
+    url: "https://onakama.vercel.app/",
+
+    siteName: "Onakama",
+
+    images: [
+      {
+        url: "/ogp.png",
+        width: 1197,
+        height: 581,
+        alt: "Onakama",
+      },
+    ],
+
+    locale: "ja_JP",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Onakama | IBS当事者同士がつながれる場所",
+
+    description:
+      "外出や人付き合いに不安を感じるあなたへ。無理せず、匿名でつながれる場所。",
+
+    images: ["/ogp.png"],
+  },
+
 };
