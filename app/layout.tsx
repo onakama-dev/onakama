@@ -3,6 +3,7 @@ import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'sonner'
 import Footer from '@/components/Footer'
+import { Analytics } from "@vercel/analytics/next"
 
 
 const notoSans = Noto_Sans_JP({
@@ -37,6 +38,7 @@ export default function RootLayout({
           }}
         />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
