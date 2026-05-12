@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/ogp.png",
+        url: "/ogp-v2.png",
         width: 1197,
         height: 581,
         alt: "Onakama",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     description:
       "外出や人付き合いに不安を感じるあなたへ。無理せず、匿名でつながれる場所。",
 
-    images: ["/ogp.png"],
+    images: ["/ogp-v2.png"],
   },
 
 };
